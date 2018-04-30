@@ -16,5 +16,5 @@ public class tapToStart : MonoBehaviour {
         {
             SceneManager.LoadScene("SelectLevel");
         }
-	}
+    }
 }
