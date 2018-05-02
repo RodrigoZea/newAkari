@@ -10,7 +10,7 @@ public class Character : MonoBehaviour {
     SpriteRenderer sr;
     public Camera cam;
     private float jumpForce = 225f;
-    private float dashForce = 200f;
+    private float dashForce = 150f;
 
     private bool facingRight = true;
     private bool jump = false;

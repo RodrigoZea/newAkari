@@ -4,13 +4,30 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+    public GameObject ninjaRojo1;
+    private float speed = 4f;
+    private int pos = 1;
+    private bool facingRight = true;
+    SpriteRenderer sr;
+
+    // Use this for initialization
+    void Start () {
+        sr = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+        ninjaRojo1.transform.Translate(new Vector3(1, 0, 0) * speed * Time.deltaTime * pos);
+        if (ninjaRojo1.transform.position.x <= 19)
+        {
+            pos = 1;
+            facingRight = true;
+        }
+        if (ninjaRojo1.transform.position.x >= 25)
+        {
+            pos = -1;
+            facingRight = false;
+        }
+        sr.flipX = !facingRight;
 	}
 }
