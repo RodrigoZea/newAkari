@@ -22,6 +22,9 @@ public class Character : MonoBehaviour {
     public AudioClip hurtClip;
     public AudioClip jumpClip;
 
+    public GameObject torso;
+    public LayerMask layerMask;
+
     private float direction;
     private bool moving;
 
@@ -51,7 +54,7 @@ public class Character : MonoBehaviour {
 
         cam.transform.position = new Vector3(rb2d.transform.position.x, rb2d.transform.position.y, cam.transform.position.z);
 
-        if (moving && onGround && !onWalls)
+        if (moving && onGround)
         {
             anim.SetFloat("Speed", Mathf.Abs(direction));
             handleMovement(direction);
@@ -59,8 +62,9 @@ public class Character : MonoBehaviour {
         }
 
         dashTimer += Time.deltaTime;
-
         timer = timer + Time.deltaTime;
+
+        //checkOnWall();
 
         if (timer > 1)
         {
@@ -89,6 +93,17 @@ public class Character : MonoBehaviour {
             onWalls = true;
         }
     }
+
+   /* void checkOnWall()
+    {
+        RaycastHit2D raycast = Physics2D.Raycast(torso.transform.position, Vector2.left, 0.1f, layerMask);
+        RaycastHit2D raycast2 = Physics2D.Raycast(torso.transform.position, Vector2.right, 0.1f, layerMask);
+
+        if (raycast.collider != null || raycast2.collider != null)
+        {
+            onWalls = true;
+        }
+    }*/
 
     private void Flip(float horizontal)
     {
