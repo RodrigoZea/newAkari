@@ -8,7 +8,7 @@ public class Character : MonoBehaviour {
     SpriteRenderer sr;
     public Camera cam;
     private float jumpForce = 225f;
-    private float dashForce = 300f;
+    private float dashForce = 200f;
 
     private bool facingRight = true;
     private bool jump = false;
@@ -46,7 +46,7 @@ public class Character : MonoBehaviour {
         // Moverse solo con botones touch
         float move = Input.GetAxis("Horizontal");
         anim.SetFloat("Speed", Mathf.Abs(move));
-      
+
         cam.transform.position = new Vector3(rb2d.transform.position.x, rb2d.transform.position.y, cam.transform.position.z);
 
         if (moving && onGround && !onWalls)
@@ -140,8 +140,10 @@ public class Character : MonoBehaviour {
 
     public void Dash()
     {
+        //anim.SetBool("Attack", true);
         if (dashTimer > 2)
         {
+            
             if (facingRight)
             {
                 rb2d.AddForce(Vector2.right * dashForce);
@@ -152,11 +154,19 @@ public class Character : MonoBehaviour {
             }
             dashTimer = 0;
         }
+        else
+        {
+            //afterDash();
+        }
+        
         
     }
 
     private void afterDash()
     {
-        
+        if(anim.GetBool("Attack") == true)
+        {
+            //anim.SetBool("Attack", false);
+        }
     }
 }
