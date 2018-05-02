@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Character : MonoBehaviour {
 
+    private float timer;
+
     Rigidbody2D rb2d;
     SpriteRenderer sr;
     public Camera cam;
@@ -58,6 +60,12 @@ public class Character : MonoBehaviour {
 
         dashTimer += Time.deltaTime;
 
+        timer = timer + Time.deltaTime;
+
+        if (timer > 1)
+        {
+            anim.SetBool("Attack", false);
+        }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -140,33 +148,28 @@ public class Character : MonoBehaviour {
 
     public void Dash()
     {
-        //anim.SetBool("Attack", true);
+        timer = 0;
+        
         if (dashTimer > 2)
         {
             
             if (facingRight)
             {
+                anim.SetBool("Attack", true);
                 rb2d.AddForce(Vector2.right * dashForce);
             }
             else
             {
+                anim.SetBool("Attack", true);
                 rb2d.AddForce(Vector2.left * dashForce);
             }
             dashTimer = 0;
-        }
-        else
-        {
-            //afterDash();
-        }
-        
+        }      
         
     }
 
     private void afterDash()
     {
-        if(anim.GetBool("Attack") == true)
-        {
-            //anim.SetBool("Attack", false);
-        }
+
     }
 }
