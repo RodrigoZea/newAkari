@@ -54,7 +54,7 @@ public class Character : MonoBehaviour {
 
         cam.transform.position = new Vector3(rb2d.transform.position.x, rb2d.transform.position.y, cam.transform.position.z);
 
-        if (moving && onGround)
+        if (moving || onGround)
         {
             anim.SetFloat("Speed", Mathf.Abs(direction));
             handleMovement(direction);
