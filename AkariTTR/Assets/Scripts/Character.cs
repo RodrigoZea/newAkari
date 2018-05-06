@@ -10,7 +10,6 @@ public class Character : MonoBehaviour {
     SpriteRenderer sr;
     public Camera cam;
     private float jumpForce = 225f;
-    private float dashForce = 150f;
 
     private bool facingRight = true;
     private bool jump = false;
@@ -22,7 +21,7 @@ public class Character : MonoBehaviour {
     public AudioClip hurtClip;
     public AudioClip jumpClip;
 
-    public GameObject torso;
+    public GameObject sword;
     public LayerMask layerMask;
 
     private float direction;
@@ -54,7 +53,7 @@ public class Character : MonoBehaviour {
 
         cam.transform.position = new Vector3(rb2d.transform.position.x, rb2d.transform.position.y, cam.transform.position.z);
 
-        if (moving || onGround)
+        if (moving && onGround)
         {
             anim.SetFloat("Speed", Mathf.Abs(direction));
             handleMovement(direction);
@@ -69,6 +68,7 @@ public class Character : MonoBehaviour {
         if (timer > 1)
         {
             anim.SetBool("Attack", false);
+            sword.SetActive(false);
         }
     }
 
@@ -161,23 +161,25 @@ public class Character : MonoBehaviour {
         audioSource.clip = jumpClip;
     }
 
-    public void Dash()
+    /* Esto ahora solo es ataque */
+    public void Dash(float dashForce)
     {
         timer = 0;
         
-        if (dashTimer > 2)
+        if (dashTimer > 1)
         {
-            
-            if (facingRight)
+            sword.SetActive(true);
+            anim.SetBool("Attack", true);
+            /*if (facingRight)
             {
-                anim.SetBool("Attack", true);
                 rb2d.AddForce(Vector2.right * dashForce);
+                anim.SetBool("Attack", true);
             }
             else
             {
-                anim.SetBool("Attack", true);
                 rb2d.AddForce(Vector2.left * dashForce);
-            }
+                anim.SetBool("Attack", true);
+            }*/
             dashTimer = 0;
         }      
         
