@@ -24,6 +24,8 @@ public class Character : MonoBehaviour {
     public GameObject sword;
     public LayerMask layerMask;
 
+    public GameObject chest;
+
     private float direction;
     private bool moving;
 
@@ -48,12 +50,14 @@ public class Character : MonoBehaviour {
     void Update()
     {
         // Moverse solo con botones touch
-        float move = Input.GetAxis("Horizontal");
-        anim.SetFloat("Speed", Mathf.Abs(move));
-
+        if (onWalls == false && onGround ==true)
+        {
+            float move = Input.GetAxis("Horizontal");
+            anim.SetFloat("Speed", Mathf.Abs(move));
+        }
         cam.transform.position = new Vector3(rb2d.transform.position.x, rb2d.transform.position.y, cam.transform.position.z);
 
-        if (moving && onGround)
+        if (moving || onGround)
         {
             anim.SetFloat("Speed", Mathf.Abs(direction));
             handleMovement(direction);
@@ -121,8 +125,11 @@ public class Character : MonoBehaviour {
 
     public void Move(float direction)
     {
-        this.direction = direction;
-        this.moving = true;
+        if (!onWalls && onGround)
+        {
+            this.direction = direction;
+            this.moving = true;
+        }
     }
 
     public void StopMove()
