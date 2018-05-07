@@ -10,6 +10,7 @@ public class Character : MonoBehaviour {
     SpriteRenderer sr;
     public Camera cam;
     private float jumpForce = 225f;
+    private float speed = 0f;
 
     private bool facingRight = true;
     private bool jump = false;
@@ -23,8 +24,10 @@ public class Character : MonoBehaviour {
 
     public GameObject sword;
     public LayerMask layerMask;
+    RaycastHit2D raycast;
 
     public GameObject chest;
+    private bool allowMove = true;
 
     private float direction;
     private bool moving;
@@ -49,16 +52,11 @@ public class Character : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        // Moverse solo con botones touch
-        if (onWalls == false && onGround ==true)
-        {
-            float move = Input.GetAxis("Horizontal");
-            anim.SetFloat("Speed", Mathf.Abs(move));
-        }
         cam.transform.position = new Vector3(rb2d.transform.position.x, rb2d.transform.position.y, cam.transform.position.z);
 
         if (moving || onGround)
         {
+            //speed = 
             anim.SetFloat("Speed", Mathf.Abs(direction));
             handleMovement(direction);
             Flip(direction);
@@ -85,6 +83,7 @@ public class Character : MonoBehaviour {
             doubleJump = false;
             onGround = true;
             onWalls = false;
+            allowMove = true;
         }else if (collision.gameObject.tag.Equals("Deathzone"))
         {
             audioSource.clip = hurtClip;
@@ -95,7 +94,9 @@ public class Character : MonoBehaviour {
         {
             onGround = false;
             onWalls = true;
+            allowMove = false;
         }
+        
     }
 
    /* void checkOnWall()
@@ -125,7 +126,9 @@ public class Character : MonoBehaviour {
 
     public void Move(float direction)
     {
-        if (!onWalls && onGround)
+        raycast = Physics2D.Raycast(chest.transform.position, Vector2.right, 1f, layerMask);
+            
+        if (allowMove == true)
         {
             this.direction = direction;
             this.moving = true;
@@ -190,10 +193,5 @@ public class Character : MonoBehaviour {
             dashTimer = 0;
         }      
         
-    }
-
-    private void afterDash()
-    {
-
     }
 }
