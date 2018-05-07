@@ -47,11 +47,15 @@ public class Character : MonoBehaviour {
         dashTimer = 3;
         // Para respawn
         startingPosition = new Vector2(rb2d.position.x, rb2d.position.y);
+        GameController.instance.score.text = "SCORE: " + GameController.instance.points.ToString("#.#");
     }
 
     // Update is called once per frame
     void Update()
     {
+        GameController.instance.score.text = "SCORE: " + GameController.instance.points.ToString("#.#");
+
+
         cam.transform.position = new Vector3(rb2d.transform.position.x, rb2d.transform.position.y, cam.transform.position.z);
 
         if (moving || onGround)

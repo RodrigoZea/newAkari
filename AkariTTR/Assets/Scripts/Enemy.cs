@@ -40,6 +40,7 @@ public class Enemy : MonoBehaviour {
     {
         if (collision.gameObject.tag.Equals("Sword"))
         {
+            GameController.instance.points += 2.5f;
             Destroy(this.gameObject);
         }
     }
