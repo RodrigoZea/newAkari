@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Character : MonoBehaviour {
 
+    public GameObject goldCoin;
+
     private float timer;
 
     Rigidbody2D rb2d;
@@ -54,8 +56,6 @@ public class Character : MonoBehaviour {
     void Update()
     {
         GameController.instance.score.text = "SCORE: " + GameController.instance.points.ToString("#.#");
-
-
         cam.transform.position = new Vector3(rb2d.transform.position.x, rb2d.transform.position.y, cam.transform.position.z);
 
         if (moving || onGround)
@@ -93,6 +93,14 @@ public class Character : MonoBehaviour {
             audioSource.clip = hurtClip;
             audioSource.Play();
             Respawn();
+
+            if(GameController.instance.points <= 10f){
+                GameController.instance.points = 0;
+            }
+            else
+            {
+                GameController.instance.points = GameController.instance.points - 10f;
+            }
         }
         else if (collision.gameObject.tag.Equals("Walls"))
         {
@@ -103,16 +111,14 @@ public class Character : MonoBehaviour {
         
     }
 
-   /* void checkOnWall()
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        RaycastHit2D raycast = Physics2D.Raycast(torso.transform.position, Vector2.left, 0.1f, layerMask);
-        RaycastHit2D raycast2 = Physics2D.Raycast(torso.transform.position, Vector2.right, 0.1f, layerMask);
-
-        if (raycast.collider != null || raycast2.collider != null)
+        if (collision.tag.Equals("GoldCoin"))
         {
-            onWalls = true;
+            GameController.instance.points += 10f;
+            GameObject.Destroy(goldCoin);
         }
-    }*/
+    }
 
     private void Flip(float horizontal)
     {
@@ -184,16 +190,6 @@ public class Character : MonoBehaviour {
         {
             sword.SetActive(true);
             anim.SetBool("Attack", true);
-            /*if (facingRight)
-            {
-                rb2d.AddForce(Vector2.right * dashForce);
-                anim.SetBool("Attack", true);
-            }
-            else
-            {
-                rb2d.AddForce(Vector2.left * dashForce);
-                anim.SetBool("Attack", true);
-            }*/
             dashTimer = 0;
         }      
         

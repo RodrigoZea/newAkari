@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour {
     {
         /*Se crea el instance al ejecutarse el programa*/
         instance = this;
-        points = 0f;
+        points = 0;
     }
 
     // Use this for initialization
