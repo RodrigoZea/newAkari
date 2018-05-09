@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour {
-
-    public GameObject goldCoin;
-
     private float timer;
 
     Rigidbody2D rb2d;
@@ -110,16 +107,7 @@ public class Character : MonoBehaviour {
         }
         
     }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag.Equals("GoldCoin"))
-        {
-            GameController.instance.points += 10f;
-            GameObject.Destroy(goldCoin);
-        }
-    }
-
+    
     private void Flip(float horizontal)
     {
         if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)

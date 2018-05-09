@@ -9,6 +9,9 @@ TagManager:
   - Walls
   - Sword
   - Chest
+  - GoldCoin
+  - Spring
+  - Star
   layers:
   - Default
   - TransparentFX
