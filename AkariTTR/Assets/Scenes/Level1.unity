@@ -572,7 +572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &355563180
 RectTransform:
   m_ObjectHideFlags: 0
@@ -750,7 +750,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &401817876
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1058,6 +1058,9 @@ MonoBehaviour:
   goldCoin: {fileID: 607422265}
   spring: {fileID: 548181471}
   akari: {fileID: 509060526}
+  st1: {fileID: 401817875}
+  st2: {fileID: 355563179}
+  st3: {fileID: 694485444}
 --- !u!1 &521581400
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,6 +1266,9 @@ MonoBehaviour:
   goldCoin: {fileID: 0}
   spring: {fileID: 0}
   akari: {fileID: 0}
+  st1: {fileID: 0}
+  st2: {fileID: 0}
+  st3: {fileID: 0}
 --- !u!1 &587568731
 GameObject:
   m_ObjectHideFlags: 0
@@ -3346,7 +3352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &694485445
 RectTransform:
   m_ObjectHideFlags: 0

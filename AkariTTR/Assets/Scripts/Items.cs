@@ -11,6 +11,8 @@ public class Items : MonoBehaviour {
     
     private float springForce = 1050f;
 
+    public GameObject st1, st2, st3;
+
     // Use this for initialization
     void Start () {
 
@@ -43,17 +45,18 @@ public class Items : MonoBehaviour {
             if (collision.name == "star1")
             {
                 GameObject.Destroy(GameObject.Find("star1"));
-                //GameObject.Find("Star1").SetActive(true);
+                st2.SetActive(true);
+                
             }
             if (collision.name == "star2")
             {
                 GameObject.Destroy(GameObject.Find("star2"));
-                //GameObject.Find("Star2").SetActive(true);
+                st3.SetActive(true);
             }
             if (collision.name == "star3")
             {
                 GameObject.Destroy(GameObject.Find("star3"));
-                //GameObject.Find("Star3").SetActive(true);
+                st1.SetActive(true);
             }
         }
 
