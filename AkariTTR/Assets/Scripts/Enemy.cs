@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour {
     private int pos = 1;
     private bool facingRight = true;
     SpriteRenderer sr;
+    public float posMin;
+    public float posMax;
 
     // Use this for initialization
     void Start () {
@@ -18,12 +20,12 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         ninjaRojo1.transform.Translate(new Vector3(1, 0, 0) * speed * Time.deltaTime * pos);
-        if (ninjaRojo1.transform.position.x <= 19)
+        if (ninjaRojo1.transform.position.x <= posMin)
         {
             pos = 1;
             facingRight = true;
         }
-        if (ninjaRojo1.transform.position.x >= 25)
+        if (ninjaRojo1.transform.position.x >= posMax)
         {
             pos = -1;
             facingRight = false;

@@ -90,14 +90,8 @@ public class Character : MonoBehaviour {
             audioSource.clip = hurtClip;
             audioSource.Play();
             Respawn();
-
-            if(GameController.instance.points <= 10f){
-                GameController.instance.points = 0;
-            }
-            else
-            {
-                GameController.instance.points = GameController.instance.points - 10f;
-            }
+            removePoints();
+            
         }
         else if (collision.gameObject.tag.Equals("Walls"))
         {
@@ -107,7 +101,30 @@ public class Character : MonoBehaviour {
         }
         
     }
-    
+
+    void removePoints() {
+        if (GameController.instance.points <= 10f)
+        {
+            GameController.instance.points = 0;
+        }
+        else
+        {
+            GameController.instance.points = GameController.instance.points - 10f;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Deathzone"))
+        {
+            audioSource.clip = hurtClip;
+            audioSource.Play();
+            Respawn();
+            removePoints();
+            Destroy(collision.gameObject);
+        }
+    }
+
     private void Flip(float horizontal)
     {
         if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
@@ -124,7 +141,7 @@ public class Character : MonoBehaviour {
 
     public void Move(float direction)
     {
-        raycast = Physics2D.Raycast(chest.transform.position, Vector2.right, 1f, layerMask);
+        //raycast = Physics2D.Raycast(chest.transform.position, Vector2.right, 1f, layerMask);
             
         if (allowMove == true)
         {

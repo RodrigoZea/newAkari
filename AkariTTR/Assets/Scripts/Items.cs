@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Items : MonoBehaviour {
 
     public GameObject goldCoin;
-    public GameObject spring;
     public Rigidbody2D akari;
     
     private float springForce = 1050f;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class loadLevel : MonoBehaviour {
-
+    public string levelName;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,8 +15,13 @@ public class loadLevel : MonoBehaviour {
 		
 	}
 
-    public void changeLevel1()
+    public void changeLevelButton(string lvlName)
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene(lvlName);
+    }
+
+    public void changeLevelN()
+    {
+        SceneManager.LoadScene(levelName);
     }
 }
