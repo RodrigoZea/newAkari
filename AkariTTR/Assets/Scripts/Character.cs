@@ -26,7 +26,7 @@ public class Character : MonoBehaviour {
     RaycastHit2D raycast;
 
     public GameObject chest;
-    private bool allowMove = true;
+    private bool allowMove;
 
     private float direction;
     private bool moving;
@@ -47,6 +47,8 @@ public class Character : MonoBehaviour {
         // Para respawn
         startingPosition = new Vector2(rb2d.position.x, rb2d.position.y);
         GameController.instance.score.text = "SCORE: " + GameController.instance.points.ToString("#.#");
+
+        allowMove = true;
     }
 
     // Update is called once per frame
@@ -142,7 +144,7 @@ public class Character : MonoBehaviour {
     public void Move(float direction)
     {
         //raycast = Physics2D.Raycast(chest.transform.position, Vector2.right, 1f, layerMask);
-            
+        Debug.Log("Izquierda o derecha");
         if (allowMove == true)
         {
             this.direction = direction;

@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Items : MonoBehaviour {
-
-    public GameObject goldCoin;
     public Rigidbody2D akari;
     
     private float springForce = 1050f;
@@ -14,10 +12,7 @@ public class Items : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
-        //GameObject.Find("Star1").SetActive(false);
-        //GameObject.Find("Star2").SetActive(false);
-        //GameObject.Find("Star3").SetActive(false);
+        
     }
 	
 	// Update is called once per frame
@@ -27,10 +22,21 @@ public class Items : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag.Equals("GoldCoin"))
+        if (collision.tag.Equals("Coin"))
         {
-            GameController.instance.points += 10f;
-            GameObject.Destroy(goldCoin);
+            if(collision.name == "coinGold")
+            {
+                GameController.instance.points += 30f;
+                GameObject.Destroy(GameObject.Find("coinGold"));
+            }else if(collision.name == "coinBronze")
+            {
+                GameController.instance.points += 10f;
+                GameObject.Destroy(GameObject.Find("coinBronze"));
+            }else if(collision.name == "coinSilver")
+            {
+                GameController.instance.points += 20f;
+                GameObject.Destroy(GameObject.Find("coinSilver"));
+            }
         }
         if (collision.tag.Equals("Spring"))
         {
