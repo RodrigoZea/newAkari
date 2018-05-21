@@ -9,7 +9,7 @@ public class Character : MonoBehaviour {
     SpriteRenderer sr;
     public Camera cam;
     private float jumpForce = 225f;
-    private float speed = 0f;
+
 
     private bool facingRight = true;
     private bool jump = false;
@@ -87,13 +87,15 @@ public class Character : MonoBehaviour {
             onGround = true;
             onWalls = false;
             allowMove = true;
-        }else if (collision.gameObject.tag.Equals("Deathzone"))
+        }else if (collision.gameObject.tag.Equals("Ninja"))
         {
-            audioSource.clip = hurtClip;
-            audioSource.Play();
-            Respawn();
-            removePoints();
-            
+            if (sword.activeSelf == false)
+            {
+                audioSource.clip = hurtClip;
+                audioSource.Play();
+                Respawn();
+                removePoints();
+            }
         }
         else if (collision.gameObject.tag.Equals("Walls"))
         {
@@ -107,7 +109,7 @@ public class Character : MonoBehaviour {
     void removePoints() {
         if (GameController.instance.points <= 10f)
         {
-            GameController.instance.points = 0;
+            //GameController.instance.points = 0;
         }
         else
         {
@@ -123,7 +125,7 @@ public class Character : MonoBehaviour {
             audioSource.Play();
             Respawn();
             removePoints();
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
         }
     }
 
@@ -143,8 +145,6 @@ public class Character : MonoBehaviour {
 
     public void Move(float direction)
     {
-        //raycast = Physics2D.Raycast(chest.transform.position, Vector2.right, 1f, layerMask);
-        Debug.Log("Izquierda o derecha");
         if (allowMove == true)
         {
             this.direction = direction;

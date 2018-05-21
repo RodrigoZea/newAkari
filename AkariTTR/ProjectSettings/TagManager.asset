@@ -12,6 +12,7 @@ TagManager:
   - Spring
   - Star
   - Coin
+  - Ninja
   layers:
   - Default
   - TransparentFX

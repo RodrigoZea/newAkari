@@ -8,7 +8,7 @@ public class Cannon : MonoBehaviour {
     public float firePower;
 	// Use this for initialization
 	void Start () {
-        Rigidbody2D rb2d = GetComponent<Rigidbody2D>();
+        
 	}
 	
 	// Update is called once per frame
