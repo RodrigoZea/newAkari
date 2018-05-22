@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class Items : MonoBehaviour {
     public Rigidbody2D akari;
-    
+
     private float springForce = 800f;
 
     public GameObject st1, st2, st3;
 
+    
     // Use this for initialization
     void Start () {
         
@@ -17,24 +18,27 @@ public class Items : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        
 
-	}
+    }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        
+
         if (collision.tag.Equals("Coin"))
         {
             if(collision.name == "coinGold")
             {
-                GameController.instance.points += 30f;
+                GameController.instance.points = GameController.instance.points + 30f;
                 GameObject.Destroy(GameObject.Find("coinGold"));
             }else if(collision.name == "coinBronze")
             {
-                GameController.instance.points += 10f;
+                GameController.instance.points = GameController.instance.points + 10f;
                 GameObject.Destroy(GameObject.Find("coinBronze"));
             }else if(collision.name == "coinSilver")
             {
-                GameController.instance.points += 20f;
+                GameController.instance.points = GameController.instance.points + 20f;
                 GameObject.Destroy(GameObject.Find("coinSilver"));
             }
         }

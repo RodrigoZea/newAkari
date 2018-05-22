@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour {
+
     private float timer;
 
     Rigidbody2D rb2d;
@@ -54,7 +55,10 @@ public class Character : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        GameController.instance.score.text = "SCORE: " + GameController.instance.points.ToString("#.#");
+        GameController.instance.score.text = "Score: " + GameController.instance.points.ToString("#");
+
+
+        //GameController.instance.score.text = "SCORE: " + GameController.instance.points.ToString("#.#");
         cam.transform.position = new Vector3(rb2d.transform.position.x, rb2d.transform.position.y, cam.transform.position.z);
 
         if (moving || onGround)
@@ -102,8 +106,16 @@ public class Character : MonoBehaviour {
             onGround = false;
             onWalls = true;
             allowMove = false;
+        }else if (collision.gameObject.tag.Equals("Deathzone"))
+        {
+            audioSource.clip = hurtClip;
+            audioSource.Play();
+            Respawn();
+            removePoints();
+            
+            //Destroy(collision.gameObject);
         }
-        
+
     }
 
     void removePoints() {
@@ -183,7 +195,7 @@ public class Character : MonoBehaviour {
     public void Respawn()
     {
         rb2d.position = (startingPosition);
-
+        fallingSteel.rest = true;
         //Ver como solucionar esto, cuando se pone esta linea ya no suena hurtClip
         audioSource.clip = jumpClip;
     }
