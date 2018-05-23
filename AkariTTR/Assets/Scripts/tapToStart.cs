@@ -12,6 +12,7 @@ public class tapToStart : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        /*Cambia de escena a menu*/
 	    if (Input.touchCount >= 1)
         {
             SceneManager.LoadScene("SelectLevel");

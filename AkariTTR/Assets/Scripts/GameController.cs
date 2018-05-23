@@ -22,11 +22,9 @@ public class GameController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //score.text = "Score: " + points.ToString();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //score.text = "Score: " + points.ToString();
     }
 }
