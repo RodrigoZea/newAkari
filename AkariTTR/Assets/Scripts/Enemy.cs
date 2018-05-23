@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour {
     private float speed = 4f;
     private int pos = 1;
     private bool facingRight = true;
+    AudioSource audioS;
     SpriteRenderer sr;
     public float posMin;
     public float posMax;
@@ -15,6 +16,7 @@ public class Enemy : MonoBehaviour {
     // Use this for initialization
     void Start () {
         sr = GetComponent<SpriteRenderer>();
+        audioS = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -39,9 +41,11 @@ public class Enemy : MonoBehaviour {
 
         if (collision.gameObject.tag.Equals("Sword"))
         {
-            Debug.Log("Adios");
+            
             GameController.instance.points += 25f;
+            audioS.Play();
             Destroy(ninja);
+
         }
     }
 
@@ -50,9 +54,10 @@ public class Enemy : MonoBehaviour {
 
         if (collision.tag.Equals("Sword"))
         {
-            Debug.Log("Hola");
             GameController.instance.points += 25f;
+            audioS.Play();
             Destroy(ninja);
+
         }
     }
 }

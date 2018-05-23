@@ -195,7 +195,6 @@ public class Character : MonoBehaviour {
     public void Respawn()
     {
         rb2d.position = (startingPosition);
-        fallingSteel.rest = true;
         //Ver como solucionar esto, cuando se pone esta linea ya no suena hurtClip
         audioSource.clip = jumpClip;
     }
